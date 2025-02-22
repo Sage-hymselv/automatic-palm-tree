@@ -1,46 +1,107 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emmanuel Addo Obiri - Web Developer Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.24/dist/tailwind.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="tailwind.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Fade-in animation for main content */
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Rotate animation on hover */
+        .rotate:hover {
+            transform: rotate(20deg);
+            transition: transform 0.3s ease;
+        }
+
+        /* Bounce animation for the profile image */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .profile-image {
+            animation: bounce 1s infinite;
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 640px) {
+            .main-container {
+                width: 90%;
+                height: auto;
+                padding: 20px;
+            }
+            .social-icon i {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
-  <header class="bg-blue-600 text-white p-6 text-center">
-    <h1 class="text-4xl font-bold">Emmanuel Addo Obiri - Web Developer</h1>
-    <p class="text-lg">Creating modern and responsive web experiences</p>
-  </header>  <main class="max-w-4xl mx-auto p-6">
-    <section id="about" class="my-10">
-      <h2 class="text-2xl font-bold mb-4">About Me</h2>
-      <p class="text-lg">I am a web developer passionate about building user-friendly, responsive websites using the latest web technologies. With expertise in front-end development, I strive to deliver exceptional web experiences.</p>
-    </section><section id="portfolio" class="my-10">
-  <h2 class="text-2xl font-bold mb-4">Portfolio</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-      <img src="project1.png" alt="Personal Blog Website" class="w-full">
-      <div class="p-4">
-        <h3 class="text-xl font-bold">Personal Blog</h3>
-        <p>A personal blog site built with a sleek design, responsive layout, and optimized performance.</p>
-      </div>
-    </div>
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-      <img src="project2.png" alt="E-commerce Website" class="w-full">
-      <div class="p-4">
-        <h3 class="text-xl font-bold">E-commerce Website</h3>
-        <p>An e-commerce site showcasing an intuitive shopping experience, secure payment methods, and a modern interface.</p>
-      </div>
-    </div>
-  </div>
-</section> 
 
-<section id="contact" class="my-10">
-  <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
-  <p>If you'd like me to build a website for you or have any questions, feel free to reach out!</p>
-  <p class="text-lg font-bold">Email: obiriemmanuel383@gmail.com</p>
-</section> 
-
-  </main>  <footer class="bg-blue-600 text-white p-6 text-center">
-    <p>&copy; 2025 Emmanuel Addo Obiri - Web Developer. All rights reserved.</p>
-  </footer>
+<body class="w-full h-screen overflow-hidden bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-400 flex items-center justify-center">
+    <main class="main-container rounded-xl shadow-xl w-80 h-96 bg-white bg-opacity-80 backdrop-blur-xl flex flex-col items-center justify-center gap-4 p-6 fade-in">
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL9uBB1SCg5Qwr4HUSqkFDQRme2b57WEBPJg&s" alt="Emmanuel's Profile" class="profile-image w-36 h-36 rounded-full object-cover shadow-lg">
+        <div class="text-center text-gray-900 slide-in">
+            <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">Emmanuel Addo Obiri</h1>
+            <p class="text-sm text-gray-500">Programmer | Student</p>
+        </div>
+        <div class="flex items-center justify-around w-full mt-4 gap-6">
+            <a href="https://instagram.com/sagehymselv" class="social-icon">
+                <i class="fa-brands fa-instagram text-3xl text-gradient rotate" aria-hidden="true"></i>
+            </a>
+            <a href="https://facebook.com/Sage hymselv" class="social-icon">
+                <i class="fa-brands fa-facebook text-3xl text-gradient rotate" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.tiktok.com/@emmanuel_obiri05" class="social-icon">
+                <i class="fa-brands fa-tiktok text-3xl text-gradient rotate"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fa-brands fa-youtube text-3xl text-gradient rotate"></i>
+            </a>
+        </div>
+    </main>
 </body>
+
 </html>

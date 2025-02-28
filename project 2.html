@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive To-Do App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+        <div class="flex space-x-7">
+          <a href="index.html" class="flex items-center py-4 px-2">
+            <span class="font-semibold text-gray-500 text-lg">← Back to Portfolio</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- To-Do App Section -->
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-yellow-500 text-center">Interactive To-Do App</h1>
+    <p class="text-lg text-gray-600 mt-4 text-center">Add, complete, and delete tasks with ease.</p>
+
+    <!-- Add Task Form -->
+    <div class="mt-8">
+      <form id="task-form" class="flex gap-4">
+        <input type="text" id="task-input" placeholder="Enter a new task" class="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+        <button type="submit" class="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition">Add Task</button>
+      </form>
+    </div>
+
+    <!-- Task List -->
+    <div id="task-list" class="mt-8">
+      <!-- Tasks will be dynamically added here -->
+    </div>
+  </section>
+
+  <!-- To-Do App Script -->
+  <script>
+    // Load tasks from localStorage
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    // Function to render tasks
+    function renderTasks() {
+      const taskList = document.getElementById('task-list');
+      taskList.innerHTML = '';
+
+      tasks.forEach((task, index) => {
+        const taskItem = document.createElement('div');
+        taskItem.className = 'flex flex-col bg-white p-4 rounded-lg shadow-lg mb-4';
+        taskItem.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="${task.completed ? 'line-through text-gray-500' : 'text-gray-900'}">${task.text}</span>
+            <div class="flex gap-2">
+              <button onclick="toggleTask(${index})" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">${task.completed ? 'Undo' : 'Complete'}</button>
+              <button onclick="deleteTask(${index})" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Delete</button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-2">Added: ${task.timestamp}</p>
+        `;
+        taskList.appendChild(taskItem);
+      });
+    }
+
+    // Function to add a new task
+    document.getElementById('task-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const taskInput = document.getElementById('task-input');
+      const taskText = taskInput.value.trim();
+
+      if (taskText !== '') {
+        const now = new Date();
+        const timestamp = now.toLocaleString(); // Format: "MM/DD/YYYY, HH:MM:SS AM/PM"
+        tasks.push({ text: taskText, completed: false, timestamp });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        taskInput.value = '';
+        renderTasks();
+      }
+    });
+
+    // Function to toggle task completion
+    function toggleTask(index) {
+      tasks[index].completed = !tasks[index].completed;
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      renderTasks();
+    }
+
+    // Function to delete a task
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      renderTasks();
+    }
+
+    // Initialize tasks on page load
+    renderTasks();
+  </script>
+</body>
+</html>
